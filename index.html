@@ -324,22 +324,59 @@
                                 </div>
                             </div>
 
-							<h6 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Description & Notes</h6>
+<h6 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Description & Notes</h6>
                             
-                            <div class="flex flex-col flex-grow mb-8 min-h-[150px]">
-                                <div class="flex flex-wrap gap-1 mb-2 p-1.5 bg-gray-50 dark:bg-slate-800/50 rounded-lg border border-gray-200 dark:border-gray-700" onmousedown="event.preventDefault();">
-                                    <button class="todo-cmd p-1.5 rounded hover:bg-gray-200 dark:hover:bg-slate-700 text-gray-700 dark:text-gray-300 font-bold leading-none" data-cmd="bold" title="Bold">B</button>
-                                    <button class="todo-cmd p-1.5 rounded hover:bg-gray-200 dark:hover:bg-slate-700 text-gray-700 dark:text-gray-300 italic font-serif leading-none" data-cmd="italic" title="Italic">I</button>
-                                    <button class="todo-cmd p-1.5 rounded hover:bg-gray-200 dark:hover:bg-slate-700 text-gray-700 dark:text-gray-300 underline leading-none" data-cmd="underline" title="Underline">U</button>
-                                    <div class="w-px h-5 bg-gray-300 dark:bg-gray-600 mx-1 self-center"></div>
-                                    <button class="todo-cmd p-1.5 rounded hover:bg-gray-200 dark:hover:bg-slate-700 text-gray-700 dark:text-gray-300 leading-none" data-cmd="justifyLeft" title="Align Left"><i class="bi bi-text-left"></i></button>
-                                    <button class="todo-cmd p-1.5 rounded hover:bg-gray-200 dark:hover:bg-slate-700 text-gray-700 dark:text-gray-300 leading-none" data-cmd="justifyCenter" title="Center"><i class="bi bi-text-center"></i></button>
-                                    <button class="todo-cmd p-1.5 rounded hover:bg-gray-200 dark:hover:bg-slate-700 text-gray-700 dark:text-gray-300 leading-none" data-cmd="justifyRight" title="Align Right"><i class="bi bi-text-right"></i></button>
-                                    <div class="w-px h-5 bg-gray-300 dark:bg-gray-600 mx-1 self-center"></div>
-                                    <button class="todo-cmd p-1.5 rounded hover:bg-gray-200 dark:hover:bg-slate-700 text-gray-700 dark:text-gray-300 leading-none" data-cmd="insertUnorderedList" title="Bullet List"><i class="bi bi-list-ul"></i></button>
-                                    <button class="todo-cmd p-1.5 rounded hover:bg-gray-200 dark:hover:bg-slate-700 text-gray-700 dark:text-gray-300 leading-none" data-cmd="insertOrderedList" title="Numbered List"><i class="bi bi-list-ol"></i></button>
+                            <div class="bg-white dark:bg-dark-bg border border-gray-200 dark:border-gray-700 shadow-sm rounded-xl overflow-hidden mb-8 flex-shrink-0 flex flex-col">
+                                
+                                <div id="todo-toolbar" class="bg-gray-50 dark:bg-slate-800/50 border-b border-gray-200 dark:border-gray-700 p-2 flex flex-wrap gap-2 items-center">
+                                    
+                                    <div class="flex items-center bg-white dark:bg-dark-card border border-gray-200 dark:border-gray-700 rounded shadow-sm p-1 gap-1">
+                                        <button class="todo-cmd p-1.5 rounded hover:bg-gray-100 dark:hover:bg-slate-700 text-gray-700 dark:text-gray-300 font-bold leading-none" data-cmd="bold" title="Bold">B</button>
+                                        <button class="todo-cmd p-1.5 rounded hover:bg-gray-100 dark:hover:bg-slate-700 text-gray-700 dark:text-gray-300 italic font-serif leading-none" data-cmd="italic" title="Italic">I</button>
+                                        <button class="todo-cmd p-1.5 rounded hover:bg-gray-100 dark:hover:bg-slate-700 text-gray-700 dark:text-gray-300 underline leading-none" data-cmd="underline" title="Underline">U</button>
+                                    </div>
+                                    
+                                    <div class="flex items-center bg-white dark:bg-dark-card border border-gray-200 dark:border-gray-700 rounded shadow-sm p-1 gap-1">
+                                        <button class="todo-cmd p-1.5 rounded hover:bg-gray-100 dark:hover:bg-slate-700 text-gray-700 dark:text-gray-300 leading-none" data-cmd="justifyLeft" title="Align Left"><i class="bi bi-text-left"></i></button>
+                                        <button class="todo-cmd p-1.5 rounded hover:bg-gray-100 dark:hover:bg-slate-700 text-gray-700 dark:text-gray-300 leading-none" data-cmd="justifyCenter" title="Center"><i class="bi bi-text-center"></i></button>
+                                        <button class="todo-cmd p-1.5 rounded hover:bg-gray-100 dark:hover:bg-slate-700 text-gray-700 dark:text-gray-300 leading-none" data-cmd="justifyRight" title="Align Right"><i class="bi bi-text-right"></i></button>
+                                    </div>
+                    
+                                    <div class="flex items-center bg-white dark:bg-dark-card border border-gray-200 dark:border-gray-700 rounded shadow-sm p-1 gap-1">
+                                        <button class="todo-cmd p-1.5 rounded hover:bg-gray-100 dark:hover:bg-slate-700 text-gray-700 dark:text-gray-300 leading-none" data-cmd="insertUnorderedList" title="Bullet List"><i class="bi bi-list-ul"></i></button>
+                                        <button class="todo-cmd p-1.5 rounded hover:bg-gray-100 dark:hover:bg-slate-700 text-gray-700 dark:text-gray-300 leading-none" id="todo-attach-btn" title="Attach Image"><i class="bi bi-image"></i></button>
+                                    </div>
+                    
+                                    <div class="flex items-center bg-white dark:bg-dark-card border border-gray-200 dark:border-gray-700 rounded shadow-sm p-1 gap-1">
+                                        <button class="todo-cmd p-1.5 rounded hover:bg-gray-100 dark:hover:bg-slate-700 text-red-500 leading-none" id="todo-color-btn" title="Text Color"><i class="bi bi-palette-fill"></i></button>
+                                        <div class="w-px h-5 bg-gray-300 dark:bg-gray-600 mx-1"></div>
+                                        <select id="todo-size-picker" class="bg-transparent border-0 text-sm font-bold text-gray-700 dark:text-gray-300 focus:ring-0 cursor-pointer outline-none pl-1 pr-6 py-1 appearance-none" title="Font Size">
+                                            <option value="2" class="dark:bg-slate-900">Normal</option>
+                                            <option value="4" class="dark:bg-slate-900">Large</option>
+                                            <option value="6" class="dark:bg-slate-900">Huge</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <button class="todo-cmd p-1.5 rounded bg-white dark:bg-dark-card border border-gray-200 dark:border-gray-700 shadow-sm hover:bg-gray-100 dark:hover:bg-slate-700 leading-none text-base" id="todo-emoji-btn" title="Symbols & Emoji">😊</button>
                                 </div>
-                                <div id="todoDescInput" contenteditable="true" class="w-full bg-transparent border border-transparent focus:border-purple-500 dark:focus:border-purple-500 rounded-lg text-gray-700 dark:text-gray-300 outline-none custom-scrollbar p-3 leading-relaxed text-sm md:text-base flex-grow overflow-y-auto transition-colors"></div>
+                                
+                                <div id="todo-color-palette" class="bg-gray-50 dark:bg-slate-800/50 border-b border-gray-200 dark:border-gray-700 p-2 hidden gap-2 flex-wrap justify-center"></div>
+                    
+                                <div id="todo-emoji-picker" class="bg-gray-50 dark:bg-slate-800/50 border-b border-gray-200 dark:border-gray-700 p-2 hidden gap-2 flex-wrap justify-center text-xl">
+                                    <span class="todo-emoji cursor-pointer hover:scale-110 transition-transform">✅</span><span class="todo-emoji cursor-pointer hover:scale-110 transition-transform">❌</span><span class="todo-emoji cursor-pointer hover:scale-110 transition-transform">⭐</span>
+                                    <span class="todo-emoji cursor-pointer hover:scale-110 transition-transform">📌</span><span class="todo-emoji cursor-pointer hover:scale-110 transition-transform">🔥</span><span class="todo-emoji cursor-pointer hover:scale-110 transition-transform">💡</span>
+                                    <span class="todo-emoji cursor-pointer hover:scale-110 transition-transform">🚀</span><span class="todo-emoji cursor-pointer hover:scale-110 transition-transform">💻</span><span class="todo-emoji cursor-pointer hover:scale-110 transition-transform">⚠️</span>
+                                    <span class="todo-emoji cursor-pointer hover:scale-110 transition-transform">😀</span><span class="todo-emoji cursor-pointer hover:scale-110 transition-transform">🤔</span><span class="todo-emoji cursor-pointer hover:scale-110 transition-transform">💯</span>
+                                </div>
+                    
+                                <input type="file" id="todoImageInput" accept="image/*" class="hidden">
+                                
+                                <div id="todoImagePreviewContainer" class="hidden p-3 bg-gray-50 dark:bg-slate-800/30 border-b border-gray-200 dark:border-gray-700 relative text-center">
+                                    <img id="todoImagePreview" src="#" class="rounded border border-gray-200 dark:border-gray-600 shadow-sm inline-block" style="max-height: 120px; max-width: 100%;">
+                                    <button id="todoRemoveImageBtn" class="absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center shadow transition-colors text-sm">&times;</button>
+                                </div>
+                    
+                                <div id="todoDescInput" class="p-4 custom-scrollbar text-gray-800 dark:text-gray-200 outline-none leading-relaxed flex-grow min-h-[150px] overflow-y-auto" contenteditable="true"></div>
                             </div>
 							
                             <div class="mt-auto">
@@ -371,6 +408,105 @@
                 </div>
             </div>
         
+			<div id="aemSection" class="tab-content hidden animate-fade-in">
+				<div class="bg-white dark:bg-dark-card shadow-lg border border-gray-200 dark:border-dark-border rounded-2xl overflow-hidden" style="border-top: 4px solid #3b82f6;">
+					
+					<div class="border-b border-gray-200 dark:border-dark-border p-6 bg-gray-50 dark:bg-slate-800/30">
+						<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+							<div>
+								<label class="block text-xs font-bold text-gray-500 dark:text-gray-400 mb-2 ml-2 uppercase tracking-wide">Select Project</label>
+								<div class="flex items-center shadow-inner rounded-full bg-white dark:bg-dark-bg border border-gray-300 dark:border-gray-600 w-full px-4 py-2 focus-within:border-primary-500 focus-within:ring-1 focus-within:ring-primary-500 transition-all">
+									<i class="bi bi-folder-fill text-primary-500 shrink-0 mr-3 text-lg"></i>
+									<select class="bg-transparent border-0 font-bold cursor-pointer flex-1 text-gray-700 dark:text-gray-200 outline-none appearance-none" id="projectSelector">
+										<option value="vc" class="dark:bg-dark-card">Vacheron Constantin</option>
+										<option value="vca" class="dark:bg-dark-card">Van Cleef & Arpels</option>
+										<option value="pan" class="dark:bg-dark-card">Panerai</option>
+										<option value="car" class="dark:bg-dark-card">Cartier</option>
+									</select>
+									<i class="bi bi-chevron-down text-gray-400 shrink-0 ml-2 text-sm pointer-events-none"></i>
+								</div>
+							</div>
+							<div>
+								<label class="block text-xs font-bold text-gray-500 dark:text-gray-400 mb-2 ml-2 uppercase tracking-wide">Select Region</label>
+								<div class="flex items-center shadow-inner rounded-full bg-white dark:bg-dark-bg border border-gray-300 dark:border-gray-600 w-full px-4 py-2 focus-within:border-success-500 focus-within:ring-1 focus-within:ring-success-500 transition-all">
+									<i class="bi bi-geo-alt-fill text-success-500 shrink-0 mr-3 text-lg"></i>
+									<select class="bg-transparent border-0 font-bold cursor-pointer flex-1 text-gray-700 dark:text-gray-200 outline-none appearance-none" id="locationSelector">
+										<option value="all" class="dark:bg-dark-card">Global (All)</option>
+										<option value="international" class="dark:bg-dark-card">International</option>
+										<option value="americas" class="dark:bg-dark-card">Americas</option>
+										<option value="asia" class="dark:bg-dark-card">Asia</option>
+										<option value="europe" class="dark:bg-dark-card">Europe</option>
+										<option value="middle-east" class="dark:bg-dark-card">Middle East</option>
+									</select>
+									<i class="bi bi-chevron-down text-gray-400 shrink-0 ml-2 text-sm pointer-events-none"></i>
+								</div>
+							</div>
+						</div>
+					</div> 
+					
+					<div class="p-6 md:p-8">
+						<h3 class="mb-6 font-extrabold text-primary-500 border-b border-gray-200 dark:border-dark-border pb-3 text-xl" id="projectTitle">Vacheron Constantin</h3>
+
+						<div class="mb-8 aem-group"> 
+							<label class="block text-xs font-bold text-gray-500 dark:text-gray-400 mb-2 ml-1">Language Master Link (EN)</label>
+							<div class="flex mb-3 shadow-sm rounded-full overflow-hidden border border-primary-500 focus-within:ring-2 focus-within:ring-primary-500/30 transition-all">
+								<span class="bg-white dark:bg-dark-bg text-primary-500 px-4 flex items-center justify-center border-r border-gray-200 dark:border-gray-700"><i class="bi bi-link-45deg text-xl"></i></span>
+								<input type="text" id="masterLink" class="flex-1 bg-white dark:bg-dark-bg border-0 font-bold px-3 py-3 text-gray-800 dark:text-gray-100 outline-none" placeholder="Paste EN master link...">
+								<button id="populateMasterBtn" class="bg-primary-500 hover:bg-primary-600 text-white font-bold px-6 py-3 transition-colors">
+									<i class="bi bi-lightning-fill mr-1"></i> LM
+								</button>
+							</div>
+							<div class="flex gap-2 mt-2">
+								<button id="openMasterLinks" class="flex-1 hidden border border-success-500 text-success-600 dark:text-success-400 hover:bg-success-50 dark:hover:bg-success-500/10 font-bold py-1.5 px-3 rounded-full transition-colors text-sm"><i class="bi bi-box-arrow-up-right mr-1"></i>Open All</button>
+								<button id="exportMasterLinks" class="flex-1 hidden border border-gray-400 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 font-bold py-1.5 px-3 rounded-full transition-colors export-links-btn text-sm"><i class="bi bi-download mr-1"></i>Export</button>
+								<button id="clearMaster" class="hidden border border-red-500 text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 py-1.5 px-4 rounded-full transition-colors"><i class="bi bi-trash"></i></button>
+							</div>
+							<div id="masterOutputLinks" class="mt-3 ml-2"></div>
+						</div>
+
+						<div class="border-b border-gray-200 dark:border-dark-border my-8 border-dashed"></div>
+
+						<div class="mb-8 aem-group"> 
+							<label class="block text-xs font-bold text-gray-500 dark:text-gray-400 mb-2 ml-1">Live Copy Link (WW/Global)</label>
+							<div class="flex mb-3 shadow-sm rounded-full overflow-hidden border border-success-500 focus-within:ring-2 focus-within:ring-success-500/30 transition-all">
+								<span class="bg-white dark:bg-dark-bg text-success-500 px-4 flex items-center justify-center border-r border-gray-200 dark:border-gray-700"><i class="bi bi-globe text-xl"></i></span>
+								<input type="text" id="liveCopyLink" class="flex-1 bg-white dark:bg-dark-bg border-0 font-bold px-3 py-3 text-gray-800 dark:text-gray-100 outline-none" placeholder="Paste Global/WW link...">
+								<button id="validateLiveCopyBtn" class="bg-gray-100 hover:bg-gray-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-gray-700 dark:text-gray-200 font-bold px-5 py-3 transition-colors border-l border-gray-200 dark:border-gray-600" title="Validate EN">EN</button>
+								<button id="populateLiveCopyBtn" class="bg-success-500 hover:bg-success-600 text-white font-bold px-6 py-3 transition-colors">
+									<i class="bi bi-search mr-1"></i> LOCALES
+								</button>
+							</div>
+							<div class="flex gap-2 mt-2">
+								<button id="openLiveCopyLinks" class="flex-1 hidden border border-success-500 text-success-600 dark:text-success-400 hover:bg-success-50 dark:hover:bg-success-500/10 font-bold py-1.5 px-3 rounded-full transition-colors text-sm"><i class="bi bi-box-arrow-up-right mr-1"></i>Open All</button>
+								<button id="exportLiveCopyLinks" class="flex-1 hidden border border-gray-400 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 font-bold py-1.5 px-3 rounded-full transition-colors export-links-btn text-sm"><i class="bi bi-download mr-1"></i>Export</button>
+								<button id="clearLiveCopy" class="hidden border border-red-500 text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 py-1.5 px-4 rounded-full transition-colors"><i class="bi bi-trash"></i></button>
+							</div>
+							<div id="liveCopyOutputLinks" class="mt-3 ml-2"></div>
+						</div>
+
+						<div class="border-b border-gray-200 dark:border-dark-border my-8 border-dashed"></div>
+
+						<div class="mb-2 aem-group"> 
+							<label class="block text-xs font-bold text-gray-500 dark:text-gray-400 mb-2 ml-1">Front-End Link</label>
+							<div class="flex mb-3 shadow-sm rounded-full overflow-hidden border border-info-500 focus-within:ring-2 focus-within:ring-info-500/30 transition-all">
+								<span class="bg-white dark:bg-dark-bg text-info-500 px-4 flex items-center justify-center border-r border-gray-200 dark:border-gray-700"><i class="bi bi-browser-chrome text-xl"></i></span>
+								<input type="text" id="frontLink" class="flex-1 bg-white dark:bg-dark-bg border-0 font-bold px-3 py-3 text-gray-800 dark:text-gray-100 outline-none" placeholder="Paste front-end link...">
+								<button id="generateFrontLinksEN" class="bg-gray-100 hover:bg-gray-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-gray-700 dark:text-gray-200 font-bold px-5 py-3 transition-colors border-l border-gray-200 dark:border-gray-600" title="Generate EN">EN</button>
+								<button id="generateFrontLinksLocale" class="bg-info-500 hover:bg-info-600 text-white font-bold px-6 py-3 transition-colors">
+									<i class="bi bi-lightning-fill mr-1"></i> LOCALES
+								</button>
+							</div>
+							<div class="flex gap-2 mt-2">
+								<button id="openFrontLinks" class="flex-1 hidden border border-success-500 text-success-600 dark:text-success-400 hover:bg-success-50 dark:hover:bg-success-500/10 font-bold py-1.5 px-3 rounded-full transition-colors text-sm"><i class="bi bi-box-arrow-up-right mr-1"></i>Open All</button>
+								<button id="exportFrontLinks" class="flex-1 hidden border border-gray-400 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 font-bold py-1.5 px-3 rounded-full transition-colors export-links-btn text-sm"><i class="bi bi-download mr-1"></i>Export</button>
+								<button id="clearFrontLinks" class="hidden border border-red-500 text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 py-1.5 px-4 rounded-full transition-colors"><i class="bi bi-trash"></i></button>
+							</div>
+							<div id="frontLinkOutput" class="mt-3 ml-2"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
 			<div id="bulkSection" class="tab-content hidden animate-fade-in h-[calc(100vh-80px)] min-h-[600px]">
 				<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full">
 					
@@ -722,6 +858,7 @@
 								<option value="dataGenerator" class="dark:bg-dark-card">Data & Password Generator</option>
 								<option value="markdownEditor" class="dark:bg-dark-card">Markdown Editor & Preview</option>
 								<option value="colorConverter" class="dark:bg-dark-card">Color Converter & Palette</option>
+								<option value="listComparer" class="dark:bg-dark-card">List Comparer (VLOOKUP)</option>
 							</select>
 							<i class="bi bi-chevron-down text-gray-400 shrink-0 ml-2 text-sm pointer-events-none"></i>
 						</div>
@@ -969,6 +1106,63 @@
 								</div>
 							</div>
 							
+							<div id="listComparer" class="toolkit-pane hidden flex-grow flex flex-col h-full animate-fade-in gap-4">
+								
+								<div class="grid grid-cols-1 md:grid-cols-2 gap-4 flex-shrink-0">
+									<div class="flex flex-col bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border rounded-xl shadow-sm overflow-hidden h-64 relative">
+										<div class="bg-blue-50 dark:bg-blue-900/20 py-2 border-b border-blue-200 dark:border-blue-800/30 text-center flex justify-between px-4 items-center flex-shrink-0">
+											<span class="text-xs font-bold text-blue-600 dark:text-blue-400">LIST A (Master / Expected)</span>
+											<span id="listACount" class="text-[10px] font-bold bg-blue-200 dark:bg-blue-800/50 text-blue-800 dark:text-blue-200 px-2 py-0.5 rounded-full border border-blue-300 dark:border-blue-700">0 items</span>
+										</div>
+										<textarea id="lcInputA" class="flex-grow w-full border-0 bg-transparent text-gray-800 dark:text-gray-200 p-4 font-mono text-sm custom-scrollbar resize-none focus:outline-none focus:ring-inset focus:ring-2 focus:ring-blue-500/50" placeholder="Paste your first list here (one item per line)..."></textarea>
+									</div>
+									<div class="flex flex-col bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border rounded-xl shadow-sm overflow-hidden h-64 relative">
+										<div class="bg-purple-50 dark:bg-purple-900/20 py-2 border-b border-purple-200 dark:border-purple-800/30 text-center flex justify-between px-4 items-center flex-shrink-0">
+											<span class="text-xs font-bold text-purple-600 dark:text-purple-400">LIST B (To Compare / Actual)</span>
+											<span id="listBCount" class="text-[10px] font-bold bg-purple-200 dark:bg-purple-800/50 text-purple-800 dark:text-purple-200 px-2 py-0.5 rounded-full border border-purple-300 dark:border-purple-700">0 items</span>
+										</div>
+										<textarea id="lcInputB" class="flex-grow w-full border-0 bg-transparent text-gray-800 dark:text-gray-200 p-4 font-mono text-sm custom-scrollbar resize-none focus:outline-none focus:ring-inset focus:ring-2 focus:ring-purple-500/50" placeholder="Paste your second list here..."></textarea>
+									</div>
+								</div>
+
+								<div class="flex flex-col sm:flex-row gap-3 items-center justify-between bg-gray-50 dark:bg-slate-800/50 p-3 rounded-xl border border-gray-200 dark:border-dark-border flex-shrink-0 shadow-sm">
+									<div class="flex gap-4">
+										<label class="flex items-center gap-2 cursor-pointer ml-1">
+											<input type="checkbox" id="lcCaseSensitive" class="w-4 h-4 text-purple-600 rounded border-gray-300 focus:ring-purple-500">
+											<span class="text-sm font-bold text-gray-600 dark:text-gray-300">Case Sensitive</span>
+										</label>
+									</div>
+									<div class="flex gap-2 w-full sm:w-auto">
+										<button id="lcClearBtn" class="flex-1 sm:flex-none border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 font-bold py-2 px-6 rounded-lg transition-colors text-sm">Clear</button>
+										<button id="lcCompareBtn" class="flex-1 sm:flex-none bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-8 rounded-lg shadow-sm transition-colors text-sm btn-lift"><i class="bi bi-arrow-left-right mr-2"></i> Compare Lists</button>
+									</div>
+								</div>
+
+								<div class="grid grid-cols-1 md:grid-cols-3 gap-4 flex-grow min-h-[250px]">
+									<div class="flex flex-col h-full bg-white dark:bg-dark-card border border-red-200 dark:border-red-900/30 rounded-xl shadow-sm overflow-hidden relative">
+										<div class="bg-red-50 dark:bg-red-900/20 py-2 px-3 border-b border-red-200 dark:border-red-800/30 flex justify-between items-center flex-shrink-0">
+											<span class="text-[11px] font-bold text-red-600 dark:text-red-400 uppercase tracking-wide">Missing from B</span>
+											<span id="lcOnlyACount" class="text-[10px] font-bold text-red-700 bg-red-100 dark:bg-red-900/50 border border-red-200 dark:border-red-800 dark:text-red-300 px-2 py-0.5 rounded-full">0</span>
+										</div>
+										<textarea id="lcOnlyAOut" class="flex-grow w-full border-0 bg-transparent text-red-700 dark:text-red-400 p-3 font-mono text-sm custom-scrollbar resize-none focus:outline-none" readonly placeholder="Items that are in List A, but not in List B will appear here..."></textarea>
+									</div>
+									<div class="flex flex-col h-full bg-white dark:bg-dark-card border border-green-200 dark:border-green-900/30 rounded-xl shadow-sm overflow-hidden relative">
+										<div class="bg-green-50 dark:bg-green-900/20 py-2 px-3 border-b border-green-200 dark:border-green-800/30 flex justify-between items-center flex-shrink-0">
+											<span class="text-[11px] font-bold text-green-600 dark:text-green-400 uppercase tracking-wide">In Both (Matches)</span>
+											<span id="lcMatchesCount" class="text-[10px] font-bold text-green-700 bg-green-100 dark:bg-green-900/50 border border-green-200 dark:border-green-800 dark:text-green-300 px-2 py-0.5 rounded-full">0</span>
+										</div>
+										<textarea id="lcMatchesOut" class="flex-grow w-full border-0 bg-transparent text-green-700 dark:text-green-400 p-3 font-mono text-sm custom-scrollbar resize-none focus:outline-none" readonly placeholder="Items found in both lists..."></textarea>
+									</div>
+									<div class="flex flex-col h-full bg-white dark:bg-dark-card border border-yellow-200 dark:border-yellow-900/30 rounded-xl shadow-sm overflow-hidden relative">
+										<div class="bg-yellow-50 dark:bg-yellow-900/20 py-2 px-3 border-b border-yellow-200 dark:border-yellow-800/30 flex justify-between items-center flex-shrink-0">
+											<span class="text-[11px] font-bold text-yellow-600 dark:text-yellow-400 uppercase tracking-wide">Only in B (Extra)</span>
+											<span id="lcOnlyBCount" class="text-[10px] font-bold text-yellow-700 bg-yellow-100 dark:bg-yellow-900/50 border border-yellow-200 dark:border-yellow-800 dark:text-yellow-300 px-2 py-0.5 rounded-full">0</span>
+										</div>
+										<textarea id="lcOnlyBOut" class="flex-grow w-full border-0 bg-transparent text-yellow-700 dark:text-yellow-400 p-3 font-mono text-sm custom-scrollbar resize-none focus:outline-none" readonly placeholder="Items that are in List B, but not in List A..."></textarea>
+									</div>
+								</div>
+							</div>
+							
 						</div>
 					</div>
 				</div>
@@ -1104,6 +1298,12 @@
 								<option value="oceania" class="dark:bg-dark-card">OCEANIA</option>
 							</select>
 							<i class="bi bi-chevron-down text-gray-400 shrink-0 ml-2 text-sm pointer-events-none"></i>
+						</div>
+						
+						<label class="text-xs font-bold text-gray-500 dark:text-gray-400 mb-2 ml-2 uppercase tracking-wide">Or Search Country / City</label>
+						<div class="flex items-center shadow-inner rounded-full bg-white dark:bg-dark-bg border border-gray-300 dark:border-gray-600 w-full px-4 py-3 focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500 transition-all mb-6 flex-shrink-0">
+							<i class="bi bi-search text-gray-400 shrink-0 mr-3 text-lg"></i>
+							<input type="text" id="timezoneSearchInput" class="flex-1 bg-transparent border-0 font-bold text-gray-800 dark:text-gray-100 outline-none placeholder-gray-400 dark:placeholder-gray-500" placeholder="Start typing a country or city name..." autocomplete="off">
 						</div>
 
 						<div id="timeDisplay" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 content-start flex-grow">
@@ -1451,6 +1651,24 @@
 		</main>
 
 	</div>
+
+    <div id="aemAlertModal" class="hidden fixed inset-0 bg-gray-900/60 backdrop-blur-sm overflow-y-auto h-full w-full z-[100] flex items-center justify-center transition-opacity">
+        <div class="relative mx-auto p-6 border border-gray-200 dark:border-dark-border w-80 shadow-2xl rounded-2xl bg-white dark:bg-dark-card scale-100 transition-transform">
+            <button id="closeAlertModalCross" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200">
+                <i class="bi bi-x-lg"></i>
+            </button>
+            <div class="text-center mt-2">
+                <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full mb-4" id="aemAlertIconBg">
+                    <i id="aemAlertIcon" class="bi bi-exclamation-triangle text-yellow-500 text-4xl"></i>
+                </div>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 tracking-tight">Notice</h3>
+                <p id="aemAlertMessage" class="text-sm text-gray-500 dark:text-gray-400 font-medium mb-6 px-2"></p>
+                <button id="closeAlertModalBtn" class="w-full bg-gray-100 dark:bg-slate-800 hover:bg-gray-200 dark:hover:bg-slate-700 text-gray-800 dark:text-white font-bold py-2.5 rounded-full shadow-sm transition-colors outline-none">
+                    Got it
+                </button>
+            </div>
+        </div>
+    </div>
 	
 	<div id="stickyNoteConfirmModal" class="hidden fixed inset-0 bg-gray-900/60 backdrop-blur-sm overflow-y-auto h-full w-full z-[100] flex items-center justify-center transition-opacity">
         <div class="relative mx-auto p-6 border border-gray-200 dark:border-dark-border w-80 shadow-2xl rounded-2xl bg-white dark:bg-dark-card scale-100 transition-transform text-center">
@@ -1460,6 +1678,18 @@
             <div class="flex justify-center gap-3">
                 <button id="cancelSnDelete" class="w-1/2 bg-gray-100 dark:bg-slate-800 hover:bg-gray-200 dark:hover:bg-slate-700 text-gray-800 dark:text-white font-bold py-2 rounded-full transition-colors">Cancel</button>
                 <button id="btnConfirmSnDelete" class="w-1/2 bg-red-500 hover:bg-red-600 text-white font-bold py-2 rounded-full shadow-sm transition-colors">Delete All</button>
+            </div>
+        </div>
+    </div>
+
+	<div id="todoConfirmModal" class="hidden fixed inset-0 bg-gray-900/60 backdrop-blur-sm overflow-y-auto h-full w-full z-[100] flex items-center justify-center transition-opacity">
+        <div class="relative mx-auto p-6 border border-gray-200 dark:border-dark-border w-80 shadow-2xl rounded-2xl bg-white dark:bg-dark-card scale-100 transition-transform text-center">
+            <i class="bi bi-exclamation-triangle text-red-500 text-5xl mb-4 block"></i>
+            <h6 class="font-bold text-gray-900 dark:text-white mb-2 text-lg">Delete Task?</h6>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">This action cannot be undone.</p>
+            <div class="flex justify-center gap-3">
+                <button id="cancelTodoDelete" class="w-1/2 bg-gray-100 dark:bg-slate-800 hover:bg-gray-200 dark:hover:bg-slate-700 text-gray-800 dark:text-white font-bold py-2 rounded-full transition-colors">Cancel</button>
+                <button id="btnConfirmTodoDelete" class="w-1/2 bg-red-500 hover:bg-red-600 text-white font-bold py-2 rounded-full shadow-sm transition-colors">Delete</button>
             </div>
         </div>
     </div>
@@ -1671,18 +1901,37 @@
         if (colorPalette) colorPalette.addEventListener('mousedown', (e) => e.preventDefault());
         if (emojiPicker) emojiPicker.addEventListener('mousedown', (e) => e.preventDefault());
 
+		// Toolbar Active State Logic
+        const updateStickyToolbar = () => {
+            document.querySelectorAll('.sn-cmd').forEach(btn => {
+                const cmd = btn.getAttribute('data-cmd');
+                if (['bold', 'italic', 'underline', 'justifyLeft', 'justifyCenter', 'justifyRight', 'insertUnorderedList', 'insertOrderedList'].includes(cmd)) {
+                    if (document.queryCommandState(cmd)) {
+                        // Active: Darker background, Yellow text
+                        btn.classList.add('bg-gray-200', 'dark:bg-slate-600', 'text-yellow-600', 'dark:text-yellow-400');
+                        btn.classList.remove('text-gray-700', 'dark:text-gray-300');
+                    } else {
+                        // Inactive: Default states
+                        btn.classList.remove('bg-gray-200', 'dark:bg-slate-600', 'text-yellow-600', 'dark:text-yellow-400');
+                        btn.classList.add('text-gray-700', 'dark:text-gray-300');
+                    }
+                }
+            });
+        };
+
+        // Listen for typing and clicking to update button colors dynamically
+        editor.addEventListener('keyup', updateStickyToolbar);
+        editor.addEventListener('mouseup', updateStickyToolbar);
+        editor.addEventListener('click', updateStickyToolbar);
+
         // Text Commands
         document.querySelectorAll('.sn-cmd').forEach(btn => {
             if(['sn-color-btn', 'sn-size-picker', 'sn-emoji-btn', 'sn-attach-btn'].includes(btn.id)) return;
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
                 document.execCommand(btn.getAttribute('data-cmd'), false, null);
+                updateStickyToolbar(); // Force update instantly on click
             });
-        });
-
-        if (sizePicker) sizePicker.addEventListener('change', (e) => {
-            document.execCommand('fontSize', false, e.target.value);
-            sizePicker.value = "2"; 
         });
 
         // Toggle Panels
@@ -1774,7 +2023,7 @@
 
                 const div = document.createElement('div');
                 div.innerHTML = `
-                    <div class="bg-yellow-100 dark:bg-yellow-900/30 border border-yellow-300 dark:border-yellow-700/50 rounded-xl p-4 shadow-sm flex flex-col h-full relative group transition-transform hover:-translate-y-1">
+                    <div class="bg-yellow-100 dark:bg-yellow-900/30 mt-3 border border-yellow-300 dark:border-yellow-700/50 rounded-xl p-4 shadow-sm flex flex-col h-full relative group transition-transform hover:-translate-y-1">
                         <div class="text-sm text-gray-800 dark:text-gray-200 break-words leading-relaxed flex-grow">
                             ${displayText}
                         </div>
@@ -1839,13 +2088,17 @@
             a.click();
         });
 
-        // Delete Confirm Modal Logic
+		// Delete Confirm Modal Logic    
         const snConfirmModal = document.getElementById('stickyNoteConfirmModal');
-        if (deleteBtn) deleteBtn.addEventListener('click', () => {
-            if (notes.length > 0) snConfirmModal.classList.remove('hidden');
-        });
+        
+        if (deleteBtn) {
+            deleteBtn.addEventListener('click', () => {
+                if (notes.length > 0) snConfirmModal.classList.remove('hidden');
+            });
+        }
         
         document.getElementById('cancelSnDelete')?.addEventListener('click', () => snConfirmModal.classList.add('hidden'));
+        
         document.getElementById('btnConfirmSnDelete')?.addEventListener('click', () => {
             notes = [];
             localStorage.setItem('stickyNotes', JSON.stringify(notes));
@@ -1854,7 +2107,7 @@
         });
 
         loadNotes();
-			
+		
 		// ==========================================
         // 7. DEVICE SIMULATOR LOGIC
         // ==========================================
@@ -2147,60 +2400,115 @@
         });
 		
 		// ==========================================
-        // 9. WORLD TIMEZONES LOGIC
+        // 9. WORLD TIMEZONES LOGIC (190+ Countries)
         // ==========================================
         const timeZones = {
-            europe: { "France": "Europe/Paris", "Germany": "Europe/Berlin", "UK": "Europe/London", "Italy": "Europe/Rome", "Spain": "Europe/Madrid", "Netherlands": "Europe/Amsterdam", "Turkey": "Europe/Istanbul", "Russia": "Europe/Moscow" },
-            asia: { "Philippines": "Asia/Manila", "Japan": "Asia/Tokyo", "Singapore": "Asia/Singapore", "China": "Asia/Shanghai", "India": "Asia/Kolkata", "UAE": "Asia/Dubai", "South Korea": "Asia/Seoul", "Thailand": "Asia/Bangkok" },
-            americas: { "USA (NY)": "America/New_York", "USA (LA)": "America/Los_Angeles", "Canada": "America/Toronto", "Brazil": "America/Sao_Paulo", "Mexico": "America/Mexico_City" },
-            africa: { "South Africa": "Africa/Johannesburg", "Egypt": "Africa/Cairo", "Nigeria": "Africa/Lagos", "Kenya": "Africa/Nairobi" },
-            oceania: { "Australia (Syd)": "Australia/Sydney", "New Zealand": "Pacific/Auckland" }
+            europe: { 
+                "Albania": "Europe/Tirane", "Andorra": "Europe/Andorra", "Austria": "Europe/Vienna", "Belarus": "Europe/Minsk", "Belgium": "Europe/Brussels", "Bosnia and Herzegovina": "Europe/Sarajevo", "Bulgaria": "Europe/Sofia", "Croatia": "Europe/Zagreb", "Cyprus": "Europe/Athens", "Czech Republic": "Europe/Prague", "Denmark": "Europe/Copenhagen", "Estonia": "Europe/Tallinn", "Finland": "Europe/Helsinki", "France": "Europe/Paris", "Germany": "Europe/Berlin", "Greece": "Europe/Athens", "Hungary": "Europe/Budapest", "Iceland": "Atlantic/Reykjavik", "Ireland": "Europe/Dublin", "Italy": "Europe/Rome", "Kosovo": "Europe/Belgrade", "Latvia": "Europe/Riga", "Liechtenstein": "Europe/Vaduz", "Lithuania": "Europe/Vilnius", "Luxembourg": "Europe/Luxembourg", "Malta": "Europe/Malta", "Moldova": "Europe/Chisinau", "Monaco": "Europe/Monaco", "Montenegro": "Europe/Podgorica", "Netherlands": "Europe/Amsterdam", "North Macedonia": "Europe/Skopje", "Norway": "Europe/Oslo", "Poland": "Europe/Warsaw", "Portugal": "Europe/Lisbon", "Romania": "Europe/Bucharest", "Russia (Moscow)": "Europe/Moscow", "San Marino": "Europe/San_Marino", "Serbia": "Europe/Belgrade", "Slovakia": "Europe/Bratislava", "Slovenia": "Europe/Ljubljana", "Spain": "Europe/Madrid", "Sweden": "Europe/Stockholm", "Switzerland": "Europe/Zurich", "Turkey": "Europe/Istanbul", "Ukraine": "Europe/Kiev", "United Kingdom": "Europe/London", "Vatican City": "Europe/Vatican"
+            },
+            asia: { 
+                "Afghanistan": "Asia/Kabul", "Armenia": "Asia/Yerevan", "Azerbaijan": "Asia/Baku", "Bahrain": "Asia/Bahrain", "Bangladesh": "Asia/Dhaka", "Bhutan": "Asia/Thimphu", "Brunei": "Asia/Brunei", "Cambodia": "Asia/Phnom_Penh", "China": "Asia/Shanghai", "Georgia": "Asia/Tbilisi", "India": "Asia/Kolkata", "Indonesia (Jakarta)": "Asia/Jakarta", "Iran": "Asia/Tehran", "Iraq": "Asia/Baghdad", "Israel": "Asia/Jerusalem", "Japan": "Asia/Tokyo", "Jordan": "Asia/Amman", "Kazakhstan (Almaty)": "Asia/Almaty", "Kuwait": "Asia/Kuwait", "Kyrgyzstan": "Asia/Bishkek", "Laos": "Asia/Vientiane", "Lebanon": "Asia/Beirut", "Malaysia": "Asia/Kuala_Lumpur", "Maldives": "Indian/Maldives", "Mongolia": "Asia/Ulaanbaatar", "Myanmar": "Asia/Yangon", "Nepal": "Asia/Kathmandu", "North Korea": "Asia/Pyongyang", "Oman": "Asia/Muscat", "Pakistan": "Asia/Karachi", "Palestine": "Asia/Gaza", "Philippines": "Asia/Manila", "Qatar": "Asia/Qatar", "Saudi Arabia": "Asia/Riyadh", "Singapore": "Asia/Singapore", "South Korea": "Asia/Seoul", "Sri Lanka": "Asia/Colombo", "Syria": "Asia/Damascus", "Taiwan": "Asia/Taipei", "Tajikistan": "Asia/Dushanbe", "Thailand": "Asia/Bangkok", "Timor-Leste": "Asia/Dili", "Turkmenistan": "Asia/Dushanbe", "UAE": "Asia/Dubai", "Uzbekistan": "Asia/Tashkent", "Vietnam": "Asia/Ho_Chi_Minh", "Yemen": "Asia/Riyadh"
+            },
+            americas: { 
+                "Antigua and Barbuda": "America/Antigua", "Argentina": "America/Argentina/Buenos_Aires", "Bahamas": "America/Nassau", "Barbados": "America/Barbados", "Belize": "America/Belize", "Bolivia": "America/La_Paz", "Brazil (Sao Paulo)": "America/Sao_Paulo", "Canada (Toronto)": "America/Toronto", "Canada (Vancouver)": "America/Vancouver", "Chile": "America/Santiago", "Colombia": "America/Bogota", "Costa Rica": "America/Costa_Rica", "Cuba": "America/Santo_Domingo", "Dominica": "America/Dominica", "Dominican Republic": "America/Santo_Domingo", "Ecuador": "America/Guayaquil", "El Salvador": "America/El_Salvador", "Grenada": "America/Grenada", "Guatemala": "America/Guatemala", "Guyana": "America/Guyana", "Haiti": "America/Havana", "Honduras": "America/Tegucigalpa", "Jamaica": "America/Jamaica", "Mexico (Mexico City)": "America/Mexico_City", "Nicaragua": "America/Managua", "Panama": "America/Panama", "Paraguay": "America/Asuncion", "Peru": "America/Lima", "Saint Kitts and Nevis": "America/St_Kitts", "Saint Lucia": "America/St_Lucia", "Saint Vincent": "America/St_Vincent", "Suriname": "America/Guyana", "Trinidad and Tobago": "America/Port_of_Spain", "USA (New York)": "America/New_York", "USA (Chicago)": "America/Chicago", "USA (Denver)": "America/Chicago", "USA (Los Angeles)": "America/Los_Angeles", "USA (Phoenix)": "America/Phoenix", "Uruguay": "America/Montevideo", "Venezuela": "America/Caracas"
+            },
+            africa: { 
+                "Algeria": "Africa/Algiers", "Angola": "Africa/Luanda", "Benin": "Africa/Porto-Novo", "Botswana": "Africa/Gaborone", "Burkina Faso": "Africa/Porto-Novo", "Burundi": "Africa/Ouagadougou", "Cabo Verde": "Atlantic/Cape_Verde", "Cameroon": "Africa/Douala", "Central African Republic": "Africa/Douala", "Chad": "Africa/Ndjamena", "Comoros": "Indian/Comoro", "Congo": "Africa/Brazzaville", "Djibouti": "Indian/Antananarivo", "Egypt": "Africa/Cairo", "Equatorial Guinea": "Africa/Bangui", "Eritrea": "Africa/Djibouti", "Eswatini": "Africa/Gaborone", "Ethiopia": "Africa/Addis_Ababa", "Gabon": "Africa/Libreville", "Gambia": "Africa/Banjul", "Ghana": "Africa/Accra", "Guinea": "Africa/Brazzaville", "Guinea-Bissau": "Africa/Banjul", "Ivory Coast": "Africa/Abidjan", "Kenya": "Africa/Nairobi", "Lesotho": "Africa/Maseru", "Liberia": "Africa/Monrovia", "Libya": "Africa/Tripoli", "Madagascar": "Indian/Antananarivo", "Malawi": "Africa/Maseru", "Mali": "Africa/Bamako", "Mauritania": "Africa/Bamako", "Mauritius": "Indian/Mauritius", "Morocco": "Africa/Casablanca", "Mozambique": "Indian/Antananarivo", "Namibia": "Africa/Gaborone", "Niger": "Africa/Niamey", "Nigeria": "Africa/Lagos", "Rwanda": "Africa/Kigali", "Sao Tome and Principe": "Africa/Sao_Tome", "Senegal": "Africa/Dakar", "Seychelles": "Indian/Mauritius", "Sierra Leone": "Africa/Dakar", "Somalia": "Africa/Freetown", "South Africa": "Africa/Johannesburg", "South Sudan": "Africa/Mogadishu", "Sudan": "Africa/Khartoum", "Tanzania": "Africa/Dar_es_Salaam", "Togo": "Africa/Dakar", "Tunisia": "Africa/Tunis", "Uganda": "Africa/Kampala", "Zambia": "Africa/Windhoek", "Zimbabwe": "Africa/Harare"
+            },
+            oceania: { 
+                "Australia (Sydney)": "Australia/Sydney", "Australia (Perth)": "Australia/Perth", "Australia (Brisbane)": "Australia/Perth", "Fiji": "Pacific/Fiji", "Kiribati": "Pacific/Tarawa", "Marshall Islands": "Pacific/Majuro", "Micronesia": "Pacific/Pohnpei", "Nauru": "Pacific/Nauru", "New Zealand": "Pacific/Auckland", "Palau": "Pacific/Nauru", "Papua New Guinea": "Pacific/Palau", "Samoa": "Pacific/Fiji", "Solomon Islands": "Pacific/Guadalcanal", "Tonga": "Pacific/Apia", "Tuvalu": "Pacific/Fakaofo", "Vanuatu": "Pacific/Efate"
+            }
         };
 
         document.addEventListener('DOMContentLoaded', () => {
             const selector = document.getElementById('regionSelector');
+            const searchInput = document.getElementById('timezoneSearchInput');
             const display = document.getElementById('timeDisplay');
             let worldInterval;
+            let currentlyRenderedList = [];
 
-            if (!selector || !display) return;
+            if (!selector || !searchInput || !display) return;
 
-            function renderWorldClocks(region) {
-                const countries = timeZones[region];
-                if (!countries) {
+            // Flatten the timezone dictionary into a searchable array
+            const allZonesArray = [];
+            for (const region in timeZones) {
+                for (const country in timeZones[region]) {
+                    allZonesArray.push({ country: country, zone: timeZones[region][country], region: region });
+                }
+            }
+
+            function drawClocks() {
+                if (currentlyRenderedList.length === 0) {
                     display.innerHTML = `
                         <div class="col-span-full text-center m-auto">
                             <i class="bi bi-geo-alt text-6xl text-gray-300 dark:text-gray-600 block mb-4"></i>
-                            <p class="text-gray-500 dark:text-gray-400 font-bold">Select a region to view world clocks.</p>
+                            <p class="text-gray-500 dark:text-gray-400 font-bold">Select a region or search to view world clocks.</p>
                         </div>`;
                     return;
                 }
 
                 let html = '';
-                for (const [country, zone] of Object.entries(countries)) {
-                    const now = new Date();
-                    const timeStr = now.toLocaleTimeString('en-US', { timeZone: zone, hour: 'numeric', minute: '2-digit', second: '2-digit', hour12: true });
-                    const dateStr = now.toLocaleDateString('en-US', { timeZone: zone, weekday: 'short', month: 'short', day: 'numeric' });
+                const now = new Date();
+                
+                currentlyRenderedList.forEach(item => {
+                    let timeStr = "Error", dateStr = "";
+                    try {
+                        timeStr = now.toLocaleTimeString('en-US', { timeZone: item.zone, hour: 'numeric', minute: '2-digit', second: '2-digit', hour12: true });
+                        dateStr = now.toLocaleDateString('en-US', { timeZone: item.zone, weekday: 'short', month: 'short', day: 'numeric' });
+                    } catch(e) {
+                        timeStr = "Invalid TZ";
+                    }
 
                     html += `
                         <div class="bg-gray-50 dark:bg-slate-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm flex flex-col justify-center transform transition-transform hover:-translate-y-1">
                             <div class="flex justify-between items-center mb-3 border-b border-gray-200 dark:border-gray-700 pb-2">
-                                <span class="font-bold text-gray-800 dark:text-gray-200">${country}</span>
-                                <span class="text-xs font-bold text-blue-800 dark:text-blue-300 bg-blue-100 dark:bg-blue-900/40 px-2 py-1 rounded-md">${dateStr}</span>
+                                <span class="font-bold text-gray-800 dark:text-gray-200 truncate pr-2" title="${item.country}">${item.country}</span>
+                                <span class="text-[10px] font-bold text-blue-800 dark:text-blue-300 bg-blue-100 dark:bg-blue-900/40 px-2 py-1 rounded-md shrink-0 whitespace-nowrap">${dateStr}</span>
                             </div>
                             <div class="text-2xl font-bold font-mono text-blue-500 tracking-tight text-center">${timeStr}</div>
                         </div>
                     `;
-                }
+                });
                 display.innerHTML = html;
             }
 
-            selector.addEventListener('change', () => {
-                const region = selector.value;
+            function updateInterval() {
                 clearInterval(worldInterval);
-                renderWorldClocks(region);
-                if (region) {
-                    worldInterval = setInterval(() => renderWorldClocks(region), 1000);
+                drawClocks();
+                if (currentlyRenderedList.length > 0) {
+                    worldInterval = setInterval(drawClocks, 1000);
                 }
+            }
+
+            // Event: Dropdown changes
+            selector.addEventListener('change', () => {
+                searchInput.value = ''; // Clear search
+                const region = selector.value;
+                if (!region) {
+                    currentlyRenderedList = [];
+                } else {
+                    // Filter the flat array by selected region
+                    currentlyRenderedList = allZonesArray.filter(item => item.region === region);
+                }
+                updateInterval();
+            });
+
+            // Event: Search input changes
+            searchInput.addEventListener('input', () => {
+                const query = searchInput.value.toLowerCase().trim();
+                
+                if (query === '') {
+                    // Revert to dropdown behavior if search is cleared
+                    const region = selector.value;
+                    currentlyRenderedList = region ? allZonesArray.filter(item => item.region === region) : [];
+                } else {
+                    selector.value = ''; // Clear dropdown selection
+                    currentlyRenderedList = allZonesArray.filter(item => 
+                        item.country.toLowerCase().includes(query) || 
+                        item.zone.toLowerCase().includes(query)
+                    );
+                }
+                updateInterval();
             });
         });
 		
@@ -2612,6 +2920,88 @@
 
                 // Init default color
                 updateColors(colorPicker.value);
+            }
+			
+			// 9. List Comparer (VLOOKUP Alternative)
+            const lcInputA = document.getElementById('lcInputA');
+            const lcInputB = document.getElementById('lcInputB');
+            const lcCompareBtn = document.getElementById('lcCompareBtn');
+            const lcClearBtn = document.getElementById('lcClearBtn');
+            const lcCaseSensitive = document.getElementById('lcCaseSensitive');
+            
+            if (lcCompareBtn) {
+                // Live count updater
+                const updateCounts = () => {
+                    const countA = lcInputA.value.split('\n').filter(l => l.trim()).length;
+                    const countB = lcInputB.value.split('\n').filter(l => l.trim()).length;
+                    document.getElementById('listACount').textContent = countA + ' items';
+                    document.getElementById('listBCount').textContent = countB + ' items';
+                };
+
+                lcInputA.addEventListener('input', updateCounts);
+                lcInputB.addEventListener('input', updateCounts);
+
+                // Run Comparison
+                lcCompareBtn.addEventListener('click', () => {
+                    let listA = lcInputA.value.split('\n').map(l => l.trim()).filter(l => l);
+                    let listB = lcInputB.value.split('\n').map(l => l.trim()).filter(l => l);
+
+                    let setA = new Set();
+                    let setB = new Set();
+                    
+                    // Maps to preserve original casing in output even if we compare in lowercase
+                    let mapA = new Map(); 
+                    let mapB = new Map();
+                    
+                    listA.forEach(item => {
+                        const key = lcCaseSensitive.checked ? item : item.toLowerCase();
+                        setA.add(key);
+                        if (!mapA.has(key)) mapA.set(key, item); // Store first occurrence
+                    });
+
+                    listB.forEach(item => {
+                        const key = lcCaseSensitive.checked ? item : item.toLowerCase();
+                        setB.add(key);
+                        if (!mapB.has(key)) mapB.set(key, item);
+                    });
+
+                    let onlyA = [];
+                    let onlyB = [];
+                    let matches = [];
+
+                    setA.forEach(key => {
+                        if (setB.has(key)) matches.push(mapA.get(key));
+                        else onlyA.push(mapA.get(key));
+                    });
+
+                    setB.forEach(key => {
+                        if (!setA.has(key)) onlyB.push(mapB.get(key));
+                    });
+
+                    // Output results
+                    document.getElementById('lcOnlyAOut').value = onlyA.join('\n');
+                    document.getElementById('lcOnlyACount').textContent = onlyA.length;
+
+                    document.getElementById('lcMatchesOut').value = matches.join('\n');
+                    document.getElementById('lcMatchesCount').textContent = matches.length;
+
+                    document.getElementById('lcOnlyBOut').value = onlyB.join('\n');
+                    document.getElementById('lcOnlyBCount').textContent = onlyB.length;
+                });
+
+                // Clear fields
+                lcClearBtn.addEventListener('click', () => {
+                    lcInputA.value = ''; 
+                    lcInputB.value = '';
+                    document.getElementById('lcOnlyAOut').value = '';
+                    document.getElementById('lcMatchesOut').value = '';
+                    document.getElementById('lcOnlyBOut').value = '';
+                    
+                    document.getElementById('lcOnlyACount').textContent = '0';
+                    document.getElementById('lcMatchesCount').textContent = '0';
+                    document.getElementById('lcOnlyBCount').textContent = '0';
+                    updateCounts();
+                });
             }
         });
 		
@@ -3674,7 +4064,20 @@
             const subtaskInput = document.getElementById('todoSubtaskInput');
             const addSubtaskBtn = document.getElementById('todoAddSubtaskBtn');
             const progressBadge = document.getElementById('todoChecklistProgress');
-
+			
+			// Toolbar & Image Elements
+            const todoSizePicker = document.getElementById('todo-size-picker');
+            const todoAttachBtn = document.getElementById('todo-attach-btn');
+            const todoColorBtn = document.getElementById('todo-color-btn');
+            const todoColorPalette = document.getElementById('todo-color-palette');
+            const todoEmojiBtn = document.getElementById('todo-emoji-btn');
+            const todoEmojiPicker = document.getElementById('todo-emoji-picker');
+            const todoImageInput = document.getElementById('todoImageInput');
+            const todoImagePreviewContainer = document.getElementById('todoImagePreviewContainer');
+            const todoImagePreview = document.getElementById('todoImagePreview');
+            const todoRemoveImageBtn = document.getElementById('todoRemoveImageBtn');
+            
+			let todoCurrentImageBase64 = null;
             let todos = JSON.parse(localStorage.getItem('marquisTodos')) || [];
             let activeTodoId = null;
 
@@ -3766,6 +4169,15 @@
                 eId.value = task.id;
                 eTitle.value = task.title;
                 eDesc.innerHTML = task.desc || '';
+                
+                todoCurrentImageBase64 = task.image || null;
+                if (todoCurrentImageBase64) {
+                    todoImagePreview.src = todoCurrentImageBase64;
+                    todoImagePreviewContainer.classList.remove('hidden');
+                } else {
+                    todoImagePreviewContainer.classList.add('hidden');
+                    todoImageInput.value = '';
+                }
                 eDate.value = task.date;
                 ePriority.value = task.priority;
                 eCat.value = task.category;
@@ -3847,7 +4259,8 @@
                 todos[taskIndex] = {
                     id: activeTodoId,
                     title: eTitle.value.trim() || 'Untitled Task',
-                    desc: eDesc.innerHTML,
+					desc: eDesc.innerHTML,
+                    image: todoCurrentImageBase64,
                     date: eDate.value,
                     priority: ePriority.value,
                     category: eCat.value.trim(),
@@ -3899,19 +4312,29 @@
             });
 
             // Delete
+            const todoConfirmModal = document.getElementById('todoConfirmModal');
+
             todoDeleteBtn.addEventListener('click', () => {
                 if (!activeTodoId) return;
-                if (confirm('Are you sure you want to delete this task?')) {
-                    todos = todos.filter(t => t.id !== activeTodoId);
-                    saveToStorage();
-                    activeTodoId = null;
-                    todoEmptyState.classList.remove('hidden');
-                    todoDeleteBtn.classList.add('hidden');
-                    renderList();
-                    if (window.innerWidth < 768) {
-                        todoEditorPane.classList.add('hidden');
-                    }
+                todoConfirmModal.classList.remove('hidden');
+            });
+
+            document.getElementById('cancelTodoDelete')?.addEventListener('click', () => {
+                todoConfirmModal.classList.add('hidden');
+            });
+
+            document.getElementById('btnConfirmTodoDelete')?.addEventListener('click', () => {
+                if (!activeTodoId) return;
+                todos = todos.filter(t => t.id !== activeTodoId);
+                saveToStorage();
+                activeTodoId = null;
+                todoEmptyState.classList.remove('hidden');
+                todoDeleteBtn.classList.add('hidden');
+                renderList();
+                if (window.innerWidth < 768) {
+                    todoEditorPane.classList.add('hidden');
                 }
+                todoConfirmModal.classList.add('hidden');
             });
 
             // Status Checkbox in Editor
@@ -3926,13 +4349,106 @@
             todoFilterStatus.addEventListener('change', renderList);
             todoFilterPriority.addEventListener('change', renderList);
 
-			// Toolbar Formatting
+            // Toolbar Active State Logic
+            const updateTodoToolbar = () => {
+                document.querySelectorAll('.todo-cmd').forEach(btn => {
+                    const cmd = btn.getAttribute('data-cmd');
+                    if (['bold', 'italic', 'underline', 'justifyLeft', 'justifyCenter', 'justifyRight', 'insertUnorderedList', 'insertOrderedList'].includes(cmd)) {
+                        if (document.queryCommandState(cmd)) {
+                            // Active: Darker background, Purple text
+                            btn.classList.add('bg-gray-200', 'dark:bg-slate-600', 'text-purple-600', 'dark:text-purple-400');
+                            btn.classList.remove('text-gray-700', 'dark:text-gray-300');
+                        } else {
+                            // Inactive: Default states
+                            btn.classList.remove('bg-gray-200', 'dark:bg-slate-600', 'text-purple-600', 'dark:text-purple-400');
+                            btn.classList.add('text-gray-700', 'dark:text-gray-300');
+                        }
+                    }
+                });
+            };
+
+            // Listen for typing and clicking to update button colors dynamically
+            eDesc.addEventListener('keyup', updateTodoToolbar);
+            eDesc.addEventListener('mouseup', updateTodoToolbar);
+            eDesc.addEventListener('click', updateTodoToolbar);
+
+            // --- TODO RICH TEXT TOOLBAR LOGIC ---
+            const todoColors = ['#000000', '#475569', '#ef4444', '#f97316', '#eab308', '#22c55e', '#3b82f6', '#a855f7', '#ec4899'];
+            if (todoColorPalette) {
+                todoColorPalette.innerHTML = todoColors.map(c => `<div class="todo-color-swatch w-5 h-5 rounded-full cursor-pointer hover:scale-110 transition-transform border border-black/10 shadow-sm" data-color="${c}" style="background: ${c};"></div>`).join('');
+            }
+
+            document.getElementById('todo-toolbar')?.addEventListener('mousedown', (e) => {
+                if (e.target.tagName !== 'SELECT' && e.target.tagName !== 'INPUT') e.preventDefault();
+            });
+            todoColorPalette?.addEventListener('mousedown', (e) => e.preventDefault());
+            todoEmojiPicker?.addEventListener('mousedown', (e) => e.preventDefault());
+
             document.querySelectorAll('.todo-cmd').forEach(btn => {
+                if(['todo-color-btn', 'todo-size-picker', 'todo-emoji-btn', 'todo-attach-btn'].includes(btn.id)) return;
                 btn.addEventListener('click', (e) => {
                     e.preventDefault();
                     document.execCommand(btn.getAttribute('data-cmd'), false, null);
+                    autoSave();
+                    updateTodoToolbar(); // Force update instantly on click
                 });
             });
+
+            if (todoSizePicker) todoSizePicker.addEventListener('change', (e) => {
+                document.execCommand('fontSize', false, e.target.value);
+                todoSizePicker.value = "2"; 
+                autoSave();
+            });
+
+            if (todoColorBtn) todoColorBtn.addEventListener('click', () => {
+                todoColorPalette.classList.toggle('hidden'); todoColorPalette.classList.toggle('flex');
+                todoEmojiPicker.classList.add('hidden'); todoEmojiPicker.classList.remove('flex');
+            });
+
+            document.querySelectorAll('.todo-color-swatch').forEach(swatch => {
+                swatch.addEventListener('click', () => {
+                    document.execCommand('foreColor', false, swatch.getAttribute('data-color'));
+                    todoColorPalette.classList.add('hidden'); todoColorPalette.classList.remove('flex');
+                    autoSave();
+                });
+            });
+
+            if (todoEmojiBtn) todoEmojiBtn.addEventListener('click', () => {
+                todoEmojiPicker.classList.toggle('hidden'); todoEmojiPicker.classList.toggle('flex');
+                todoColorPalette.classList.add('hidden'); todoColorPalette.classList.remove('flex');
+            });
+
+            document.querySelectorAll('.todo-emoji').forEach(emj => {
+                emj.addEventListener('click', () => {
+                    document.execCommand('insertText', false, emj.textContent);
+                    todoEmojiPicker.classList.add('hidden'); todoEmojiPicker.classList.remove('flex');
+                    autoSave();
+                });
+            });
+
+            if (todoAttachBtn) todoAttachBtn.addEventListener('click', () => todoImageInput.click());
+            if (todoImageInput) todoImageInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (ev) => {
+                        todoCurrentImageBase64 = ev.target.result;
+                        todoImagePreview.src = todoCurrentImageBase64;
+                        todoImagePreviewContainer.classList.remove('hidden');
+                        autoSave();
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+            if (todoRemoveImageBtn) todoRemoveImageBtn.addEventListener('click', () => {
+                todoCurrentImageBase64 = null;
+                todoImageInput.value = '';
+                todoImagePreviewContainer.classList.add('hidden');
+                autoSave();
+            });
+            
+            // Listen for direct typing in the contenteditable div
+            eDesc.addEventListener('input', autoSave);
 			
             // Initial Render
             renderList();
